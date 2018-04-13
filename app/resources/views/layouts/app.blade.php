@@ -62,7 +62,6 @@
                 </div>
             </div>
         </nav>
-
         @if(Auth::check())
             @include('layouts.notification')
             @include('layouts.file-form')

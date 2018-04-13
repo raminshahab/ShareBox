@@ -49,34 +49,35 @@
                 <div class="column " :class="isVideo  ? 'is-half'  : 'is-one-fifth'" v-for="file in files" v-cloak>
                     <div class="card " :class="file.type == 'image' ? 'is-image' : ''">
                         <div class="card-image">
+                             <a class="btn btn-default" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank" download>
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    &nbsp;Download
+                                </a>
                             <button class="delete delete-file" title="Delete" @click="prepareToDelete(file)">Remove</button>
                             <figure class="image is-4by3" v-if="file.type == 'image'" @click="showModal(file)">
                                 <img  src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
                             </figure>
-                            <a class="btn btn-default" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                    &nbsp;Download
-                                </a>
+
                             <div v-if="file.type == 'audio'">
                                 <figure class="image is-4by3">
                                     <img src="{{ asset('images/music.png') }}" alt="Audio image" id="audio_image">
                                 </figure>
                                 <audio controls>
-                                    <source src="" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :type="'audio/' + file.extension">
+                                    <source src="" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :type="'audio/' + file.extension" download>
                                     Your browser does not support the audio tag.
                                 </audio>
                             </div>
 
                             <div v-if="file.type == 'video'" class="video_block">
                                 <video controls>
-                                    <source src="" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :type="'video/' + file.extension">
+                                    <source src="" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :type="'video/' + file.extension" download>
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
 
                             <div v-if="file.type == 'document'" class="document_block">
                                 <figure class="image is-4by3">
-                                    <img src="{{ asset('images/document.png') }}" alt="Document image" id="doc_image">
+                                    <img src="{{ asset('images/document.png') }}" alt="Document image" id="doc_image" download>
                                 </figure>
                             </div>
                       </div>

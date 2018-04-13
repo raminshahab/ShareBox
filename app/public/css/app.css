@@ -10407,3 +10407,32 @@ a.text-dark:focus {
   top: -20px;
 }
 
+.delete-file {
+  position: relative;
+  float: right;
+}
+
+.btn {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  width: 61%;
+  margin: auto;
+}
+
+.form-control {
+  width: 48% !important;
+}
+
+img {
+  padding-left: 50px;
+  padding: 30px;
+}
+
+video {
+  height: 200px;
+  width: 200px;
+}
+

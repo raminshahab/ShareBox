@@ -67,8 +67,9 @@ class FileController extends Controller
     public function store(Request $request)
     {
         
-        $max_size = (int)ini_get('upload_max_filesize') * 2;
+        $max_size = (int)ini_get('upload_max_filesize') * 1000;
         $all_ext = implode(',', $this->allExtensions());
+        
         // validate mime extensions and max size
         $this->validate($request, [
             'name' => 'required|unique:files',
@@ -80,6 +81,7 @@ class FileController extends Controller
         $file = $request->file('file');
         $ext = $file->getClientOriginalExtension();
         $type = $this->getType($ext);
+
         $request['name'] = filter_var($request['name'],FILTER_SANITIZE_STRING);
 
         if (Storage::putFileAs('/public/' . $this->getUserDir() . '/' . $type . '/', $file, $request['name'] . '.' . $ext)) {

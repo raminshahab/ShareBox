@@ -12,7 +12,7 @@ Application allows managememt supprted files on your local FileSystem.
 More types can be supported by adding file extension types ( FileController )
 
 
-## Deployment Requirments [ Valet ]
+## Deployment Requirements [ Valet ]
 
 Homebrew php72 [ php 7.2.4 ]
 ```sh
@@ -43,6 +43,7 @@ local development
 ```sh
 npm run development
 ```
+NPM
 production 
 ```sh
 npm run prodcution 

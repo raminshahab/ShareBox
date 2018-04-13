@@ -3,7 +3,9 @@
         <form id="new-file-form" action="#" method="#" @submit.prevent="submitForm">
             <div class="field is-grouped">
                 <p class="control is-expanded">
-                    <input class="input" type="text" name="name" placeholder="File name" v-model="fileName" required>
+                    <div class="form-group">
+                     <input class="input form-control" type="text" name="name" placeholder="File name" v-model="fileName" required>
+                    </div>
                 </p>
                 <div class="file is-info has-name">
                     <label class="file-label">
