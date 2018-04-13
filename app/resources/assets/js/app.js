@@ -169,10 +169,10 @@ const app = new Vue({
                 axios.post('files/edit/' + file.id, formData)
                     .then(response => {
                         if (response.data === true) {
-                            this.showNotification('Filename successfully changed!', true);
-
-                            var src = document.querySelector('[alt="' + file.name +'"]').getAttribute("src");
-                            document.querySelector('[alt="' + file.name +'"]').setAttribute('src', src);
+                            console.log(response.data);
+                            //this.showNotification('Filename successfully changed!', true);
+                            //var src = document.querySelector('[alt="' + file.name +'"]').getAttribute("src");
+                            //document.querySelector('[alt="' + file.name +'"]').setAttribute('src', src);
                         }
                     })
                     .catch(error => {

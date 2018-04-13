@@ -25009,10 +25009,10 @@ var app = new Vue({
 
                 axios.post('files/edit/' + file.id, formData).then(function (response) {
                     if (response.data === true) {
-                        _this4.showNotification('Filename successfully changed!', true);
-
-                        var src = document.querySelector('[alt="' + file.name + '"]').getAttribute("src");
-                        document.querySelector('[alt="' + file.name + '"]').setAttribute('src', src);
+                        console.log(response.data);
+                        //this.showNotification('Filename successfully changed!', true);
+                        //var src = document.querySelector('[alt="' + file.name +'"]').getAttribute("src");
+                        //document.querySelector('[alt="' + file.name +'"]').setAttribute('src', src);
                     }
                 }).catch(function (error) {
                     _this4.errors = error.response.data.errors;

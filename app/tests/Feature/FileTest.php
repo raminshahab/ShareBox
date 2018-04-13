@@ -15,9 +15,7 @@ class FileTest extends TestCase
      */
     public function testFileControllers()
     {
-        //$this->assertTrue(true);
-        $response = $this->action('POST', 'FileController@store', ['name' => 'Test File Controller', 'file' => 'somefile']);
-       // $this->assertTrue($response->isOk());
 
+        
     }
 }

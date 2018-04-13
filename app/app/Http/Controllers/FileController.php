@@ -22,7 +22,7 @@ class FileController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth'); 
     }
 
     /**
@@ -39,7 +39,7 @@ class FileController extends Controller
             $response = $model::findOrFail($id);
         } else {
             $records_per_page = ($type == 'video') ? 6 : 15;
-            // some caching would be nice !!
+
             $files = $model::where('type', $type)
                             ->where('user_id', Auth::id())
                             ->orderBy('id', 'desc')->paginate($records_per_page);
@@ -66,9 +66,10 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        $max_size = (int)ini_get('upload_max_filesize') * 1000;
+        
+        $max_size = (int)ini_get('upload_max_filesize') * 2;
         $all_ext = implode(',', $this->allExtensions());
-
+        // validate mime extensions and max size
         $this->validate($request, [
             'name' => 'required|unique:files',
             'file' => 'required|file|mimes:' . $all_ext . '|max:' . $max_size
@@ -79,9 +80,8 @@ class FileController extends Controller
         $file = $request->file('file');
         $ext = $file->getClientOriginalExtension();
         $type = $this->getType($ext);
+        $request['name'] = filter_var($request['name'],FILTER_SANITIZE_STRING);
 
-        // some caching would be nice !!
-        //sanitize data
         if (Storage::putFileAs('/public/' . $this->getUserDir() . '/' . $type . '/', $file, $request['name'] . '.' . $ext)) {
             return $model::create([
                     'name' => $request['name'],
@@ -108,10 +108,12 @@ class FileController extends Controller
             return response()->json(false);
         }
 
+        $request['name'] = filter_var($request['name'],FILTER_SANITIZE_STRING);
+
         $this->validate($request, [
             'name' => 'required|unique:files'
         ]);
-        // sanitize data
+
         $old_filename = '/public/' . $this->getUserDir() . '/' . $file->type . '/' . $file->name . '.' . $file->extension;
         $new_filename = '/public/' . $this->getUserDir() . '/' . $request['type'] . '/' . $request['name'] . '.' . $request['extension'];
 
@@ -127,7 +129,7 @@ class FileController extends Controller
 
 
     /**
-     * Delete file from disk and database
+     * Delete file from disk 
      * @param  integer $id  File Id
      * @return boolean      True if success, otherwise - false
      */
@@ -170,7 +172,7 @@ class FileController extends Controller
     }
 
     /**
-     * Get all extensions
+     * Get all extensions for validation
      * @return array Extensions of all file types
      */
     private function allExtensions()
