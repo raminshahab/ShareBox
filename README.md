@@ -43,10 +43,6 @@ local development
 ```sh
 npm run development
 ```
-NPM
-production 
-```sh
-npm run prodcution 
-```
+
 
 
