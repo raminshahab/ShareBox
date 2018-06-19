@@ -2,7 +2,7 @@
 
 # File Sharing application 
 
-Application allows managememt supprted files on your local FileSystem.  
+Application allows file management on your local FileSystem using the Laravel Framework  
 
 [ Supported types ] 
  Images: jpg, jpeg, png, gif, tiff
